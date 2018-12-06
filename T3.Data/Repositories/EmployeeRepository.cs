@@ -7,7 +7,7 @@ using T3.Core.Repositories;
 
 namespace T3.Data.Repositories
 {
-    class EmployeeRepository : IEmployeeRepository
+    public class EmployeeRepository : IEmployeeRepository
     {
         #region Fields
         private readonly ApplicationDbContext _dbContext;

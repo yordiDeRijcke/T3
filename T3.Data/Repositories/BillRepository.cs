@@ -6,7 +6,7 @@ using T3.Core.Repositories;
 
 namespace T3.Data.Repositories
 {
-    class BillRepository : IBillRepository
+    public class BillRepository : IBillRepository
     {
         #region Fields
         private readonly ApplicationDbContext _dbContext;

@@ -6,7 +6,7 @@ using T3.Core.Repositories;
 
 namespace T3.Data.Repositories
 {
-    class ItemRepository : IItemRepository
+    public class ItemRepository : IItemRepository
     {
         #region Fields
         private readonly ApplicationDbContext _dbContext;
