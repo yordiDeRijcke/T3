@@ -1,19 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using T3.Web.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using T3.Data.Repositories;
 using T3.Core.Repositories;
+using T3.Data;
 
 namespace T3.Web
 {
@@ -40,19 +36,19 @@ namespace T3.Web
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<Data.ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            services.AddScoped<T3.Data.T3DBDataInitializer>();
+            services.AddScoped<T3DBDataInitializer>();
             services.AddScoped<IBillRepository, BillRepository>();
-            services.AddScoped<IEmployeeRepository, IEmployeeRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IItemRepository, ItemRepository>();
 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, T3.Data.T3DBDataInitializer initializer)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, T3DBDataInitializer initializer)
         {
             if (env.IsDevelopment())
             {
