@@ -12,6 +12,8 @@ using Microsoft.EntityFrameworkCore;
 using T3.Web.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using T3.Data.Repositories;
+using T3.Core.Repositories;
 
 namespace T3.Web
 {
@@ -41,10 +43,16 @@ namespace T3.Web
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            services.AddScoped<T3.Data.T3DBDataInitializer>();
+            services.AddScoped<IBillRepository, BillRepository>();
+            services.AddScoped<IEmployeeRepository, IEmployeeRepository>();
+            services.AddScoped<IItemRepository, ItemRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, T3.Data.T3DBDataInitializer initializer)
         {
             if (env.IsDevelopment())
             {
@@ -69,6 +77,8 @@ namespace T3.Web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            initializer.InitializeData();
         }
     }
 }
