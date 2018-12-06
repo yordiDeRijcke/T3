@@ -23,6 +23,20 @@ namespace T3.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new BillConfiguration());
             modelBuilder.ApplyConfiguration(new ItemConfiguration());
+
+            // Bill ManyToMany Employee
+            modelBuilder.Entity<BillEmployee>()
+                .HasKey(b => new { b.BillId, b.EmployeeId });
+
+            modelBuilder.Entity<BillEmployee>()
+                .HasOne(be => be.Bill)
+                .WithMany(b => b.BillEmployees)
+                .HasForeignKey(be => be.BillId);
+
+            modelBuilder.Entity<BillEmployee>()
+                .HasOne(be => be.Employee)
+                .WithMany(e => e.BillEmployees)
+                .HasForeignKey(be => be.EmployeeId);
         }
         #endregion
     }

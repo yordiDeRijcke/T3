@@ -16,15 +16,18 @@ namespace T3.Data.Mappers
             #endregion
 
             #region Properties
-            builder.HasKey("b => b.Id");
-            builder.Property(b => b.Name)
+            builder.HasKey(i => i.ItemId);
+            builder.HasOne(i => i.Bill)
+                .WithMany(b => b.Items)
+                .HasForeignKey(i => i.BillId);
+            builder.Property(i => i.Name)
                 .IsRequired()
                 .HasMaxLength(100);
-            builder.Property(b => b.Info)
+            builder.Property(i => i.Info)
                 .HasMaxLength(150);
-            builder.Property(b => b.Amount)
+            builder.Property(i => i.Amount)
                 .IsRequired();
-            builder.Property(b => b.Price);
+            builder.Property(i => i.Price);
             #endregion
         }
     }

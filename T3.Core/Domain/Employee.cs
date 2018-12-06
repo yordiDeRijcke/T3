@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace T3.Core.Domain
 {
@@ -10,11 +11,14 @@ namespace T3.Core.Domain
 
         #region Properties
         public int Id { get; set; }
+
         public string Name
         {
             get => _name;
             set => _name = value ?? throw new ArgumentException("Employee name cannot be null!");
         }
+
+        public IList<BillEmployee> BillEmployees { get; set; }
         #endregion
 
         #region Constructor

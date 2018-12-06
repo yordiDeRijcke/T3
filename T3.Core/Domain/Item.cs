@@ -14,8 +14,9 @@ namespace T3.Core.Domain
         #region Properties
         public int ItemId { get; set; }
 
-        [ForeignKey("Bill")]
         public int BillId { get; set; }
+
+        public Bill Bill { get; set; }
 
         public string Name
         {

@@ -37,10 +37,7 @@ namespace T3.Data
                 Bill BillX = new Bill(
                     "Rekening 1",
                     "Yordi De Rijcke",
-                    "Plaatsing van bochten voor in de oliekoelerleiding.",
-                    new List<Employee> { employeeX, employeeY },
-                    new List<double> { 2, 1.5 },
-                    new List<Item> { ItemX, ItemY });
+                    "Plaatsing van bochten voor in de oliekoelerleiding.");
                 _dbContext.Bills.Add(BillX);
                 _dbContext.SaveChanges();
             }
