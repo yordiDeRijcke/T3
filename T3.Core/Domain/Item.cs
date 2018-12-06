@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace T3.Core.Domain
 {
@@ -11,13 +12,19 @@ namespace T3.Core.Domain
         #endregion
 
         #region Properties
-        public int Id { get; set; }
+        public int ItemId { get; set; }
+
+        [ForeignKey("Bill")]
+        public int BillId { get; set; }
+
         public string Name
         {
             get => _name;
             set => _name = value ?? throw new ArgumentException("Item name cannot be null!");
         }
+
         public string Info { get; set; }
+
         public double Amount
         {
             get => _amount;
@@ -25,12 +32,13 @@ namespace T3.Core.Domain
             {
                 if (value <= 0)
                 {
-                    throw new ArgumentException("Amount must be greater than 0!");
+                    throw new ArgumentException("Item amount must be greater than 0!");
                 }
 
                 _amount = value;
             }
         }
+
         public double Price
         {
             get => _price;
@@ -44,6 +52,7 @@ namespace T3.Core.Domain
                 _price = value;
             }
         }
+
         public double TotalPrice => Price * Amount;
         #endregion
 
