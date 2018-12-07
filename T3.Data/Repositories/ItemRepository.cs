@@ -19,6 +19,7 @@ namespace T3.Data.Repositories
         }
         #endregion
 
+        #region Methods
         public void Add(Item item)
         {
             _dbContext.Items.Add(item);
@@ -43,5 +44,6 @@ namespace T3.Data.Repositories
         {
             _dbContext.SaveChanges();
         }
+        #endregion
     }
 }

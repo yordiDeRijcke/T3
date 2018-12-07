@@ -20,6 +20,7 @@ namespace T3.Data.Repositories
         }
         #endregion
 
+        #region Methods
         public void Add(Bill bill)
         {
             _dbContext.Bills.Add(bill);
@@ -53,5 +54,6 @@ namespace T3.Data.Repositories
         {
             _dbContext.SaveChanges();
         }
+        #endregion
     }
 }
