@@ -30,15 +30,15 @@
                                 @if (Bill.BillEmployees.Select(e => e.Employee).Count() == 1)
                                 {
                                     <h5>Medewerker:</h5>
-                                    <h6>@Bill.BillEmployees.Select(e => e.Employee).Single()</h6>
                                 }
                                 else
                                 {
                                     <h5>Medewerkers:</h5>
-                                    @foreach (Employee Employee in Bill.BillEmployees.Select(e => e.Employee))
-                                    {
-                                        <h6>@Employee.Name</h6>
-                                    }
+                                }
+
+                                @foreach (Employee Employee in Bill.BillEmployees.Select(e => e.Employee))
+                                {
+                                    <h6>@Employee.Name</h6>
                                 }
                             </a>
                         </div>
