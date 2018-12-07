@@ -1,0 +1,56 @@
+﻿
+@using T3.Core.Domain
+@model IEnumerable<Bill>
+@{
+    ViewData["Title"] = "Rekeningen";
+}
+
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">Select Employee</p>
+            <div class="list-group employees">
+                <a href="#" class="list-group-item">EmployeeX</a>
+                <!-- To do: JQuery GET request for Employees and fill based on list -->
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div class="row">
+                @foreach (Bill Bill in Model)
+                {
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <a asp-action="Details" asp-route-id="@Bill.Id">
+                                <h5>Klant: @Bill.Client</h5>
+                                <h5>Info:</h5>
+                                <p>@Bill.Info</p>
+
+                                @if (Bill.BillEmployees.Select(e => e.Employee).Count() == 1)
+                                {
+                                    <h5>Medewerker:</h5>
+                                    <h6>@Bill.BillEmployees.Select(e => e.Employee).Single()</h6>
+                                }
+                                else
+                                {
+                                    <h5>Medewerkers:</h5>
+                                    @foreach (Employee Employee in Bill.BillEmployees.Select(e => e.Employee))
+                                    {
+                                        <h6>@Employee.Name</h6>
+                                    }
+                                }
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+            let allBills = @(Json.Serialize(Model));
+    </script>
+}
