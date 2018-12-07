@@ -25,7 +25,7 @@ namespace T3.Data.Repositories
             _dbContext.Bills.Add(bill);
         }
 
-        public List<Bill> GetAllWith()
+        public List<Bill> GetAll()
         {
             return _dbContext.Bills.ToList();
         }

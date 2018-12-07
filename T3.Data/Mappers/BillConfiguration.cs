@@ -17,9 +17,6 @@ namespace T3.Data.Mappers
 
             #region Properties
             builder.HasKey(b => b.Id);
-            builder.Property(b => b.Name)
-                .IsRequired()
-                .HasMaxLength(100);
             builder.Property(b => b.Client)
                 .IsRequired()
                 .HasMaxLength(100);

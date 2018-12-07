@@ -39,7 +39,6 @@ namespace T3.Data
                 _dbContext.Employees.Add(employeeY);
 
                 Bill BillX = new Bill(
-                    "Rekening 1",
                     "Yordi De Rijcke",
                     "Plaatsing van bochten voor in de oliekoelerleiding.");
                 _dbContext.Bills.Add(BillX);

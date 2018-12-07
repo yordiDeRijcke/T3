@@ -6,18 +6,12 @@ namespace T3.Core.Domain
     public class Bill
     {
         #region Fields
-        private string _name;
         private string _client;
         private IList<Item> _items;
         #endregion
 
         #region Properties
         public int Id { get; set; }
-        public string Name
-        {
-            get => _name;
-            set => _name = value ?? throw new ArgumentException("Bill name cannot be null!");
-        }
         public string Client
         {
             get => _client;
@@ -34,9 +28,8 @@ namespace T3.Core.Domain
         #endregion
 
         #region Constructor
-        public Bill(string name, string client, string info)
+        public Bill(string client, string info)
         {
-            Name = name;
             Client = client;
             Info = info;
         }
