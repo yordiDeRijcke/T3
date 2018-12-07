@@ -18,7 +18,7 @@ namespace T3.Core.Domain
             set => _client = value ?? throw new ArgumentException("Client name cannot be empty!");
         }
         public string Info { get; set; }
-        public IList<BillEmployee> BillEmployees { get; set; }
+        public IList<BillEmployee> BillEmployees { get; set; } = new List<BillEmployee>();
 
         public IList<Item> Items
         {

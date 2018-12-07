@@ -36,7 +36,7 @@ namespace T3.Data
 
             modelBuilder.Entity<BillEmployee>()
                 .HasOne(be => be.Employee)
-                .WithMany(e => e.BillEmployees)
+                .WithMany()
                 .HasForeignKey(be => be.EmployeeId);
         }
         #endregion

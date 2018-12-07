@@ -17,8 +17,6 @@ namespace T3.Core.Domain
             get => _name;
             set => _name = value ?? throw new ArgumentException("Employee name cannot be null!");
         }
-
-        public IList<BillEmployee> BillEmployees { get; set; }
         #endregion
 
         #region Constructor
