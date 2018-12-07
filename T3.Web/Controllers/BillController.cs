@@ -19,9 +19,11 @@ namespace T3.Web.Controllers
         }
         #endregion
 
+        #region Methods
         public IActionResult Index()
         {
             return View(_billRepository.GetAllWithEI());
         }
+        #endregion
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace T3.Core.Domain
@@ -18,6 +19,8 @@ namespace T3.Core.Domain
             set => _client = value ?? throw new ArgumentException("Client name cannot be empty!");
         }
         public string Info { get; set; }
+
+        [JsonIgnore]
         public IList<BillEmployee> BillEmployees { get; set; } = new List<BillEmployee>();
 
         public IList<Item> Items
