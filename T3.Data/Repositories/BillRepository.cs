@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using T3.Core.Domain;
@@ -24,9 +25,18 @@ namespace T3.Data.Repositories
             _dbContext.Bills.Add(bill);
         }
 
-        public List<Bill> GetAll()
+        public List<Bill> GetAllWith()
         {
             return _dbContext.Bills.ToList();
+        }
+
+        public List<Bill> GetAllWithEI()
+        {
+            return _dbContext.Bills
+                .Include(bill => bill.BillEmployees)
+                .ThenInclude(billEmployees => billEmployees.Employee)
+                .Include(bill => bill.Items)
+                .ToList();
         }
 
         public Bill GetBy(int id)
