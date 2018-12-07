@@ -36,15 +36,15 @@ namespace T3.Web
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
-                .AddEntityFrameworkStores<Data.ApplicationDbContext>();
-
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+                .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddScoped<T3DBDataInitializer>();
             services.AddScoped<IBillRepository, BillRepository>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IItemRepository, ItemRepository>();
+            services.AddSession();
 
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
