@@ -16,10 +16,7 @@ namespace T3.Data.Mappers
             #endregion
 
             #region Properties
-            builder.HasKey(i => i.ItemId);
-            builder.HasOne(i => i.Bill)
-                .WithMany(b => b.Items)
-                .HasForeignKey(i => i.BillId);
+            builder.HasKey(i => i.Id);
             builder.Property(i => i.Name)
                 .IsRequired()
                 .HasMaxLength(100);

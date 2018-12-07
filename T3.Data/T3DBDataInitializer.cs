@@ -29,6 +29,10 @@ namespace T3.Data
                 Item ItemY = new Item("45° G1/8 bocht", null, 2, 0);
                 _dbContext.Items.Add(ItemY);
 
+                List<Item> ItemList = new List<Item>();
+                ItemList.Add(ItemX);
+                ItemList.Add(ItemY);
+
                 Employee employeeX = new Employee("Pascal");
                 _dbContext.Employees.Add(employeeX);
                 Employee employeeY = new Employee("Philip");
@@ -39,6 +43,7 @@ namespace T3.Data
                     "Yordi De Rijcke",
                     "Plaatsing van bochten voor in de oliekoelerleiding.");
                 _dbContext.Bills.Add(BillX);
+                BillX.Items = ItemList;
                 _dbContext.SaveChanges();
             }
         }

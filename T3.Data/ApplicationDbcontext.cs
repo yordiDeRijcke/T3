@@ -23,6 +23,7 @@ namespace T3.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new BillConfiguration());
             modelBuilder.ApplyConfiguration(new ItemConfiguration());
+            modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
 
             // Bill ManyToMany Employee
             modelBuilder.Entity<BillEmployee>()

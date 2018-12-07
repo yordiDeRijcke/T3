@@ -25,6 +25,11 @@ namespace T3.Data.Mappers
                 .HasMaxLength(100);
             builder.Property(b => b.Info)
                 .HasMaxLength(150);
+            builder.HasMany(b => b.Items)
+                .WithOne()
+                .HasForeignKey(i => i.BillId)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired();
             #endregion
         }
     }

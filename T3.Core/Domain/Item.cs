@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace T3.Core.Domain
 {
@@ -12,11 +11,9 @@ namespace T3.Core.Domain
         #endregion
 
         #region Properties
-        public int ItemId { get; set; }
+        public int Id { get; set; }
 
-        public int BillId { get; set; }
-
-        public Bill Bill { get; set; }
+        public int? BillId { get; set; } = null;
 
         public string Name
         {
