@@ -34,6 +34,39 @@ footer {
     margin: 50px 0
 }
 
+a {
+    color: black;
+}
+
 a:hover {
-    text-decoration: none
+    text-decoration: none;
+    color: black;
+}
+
+.bill-container {
+    border-width: 2px !important;
+}
+    .bill-container h3 {
+        text-align: center;
+    }
+
+    .bill-container h4 {
+        padding: 2%;
+        padding-bottom: 0px;
+        margin-bottom: 0px;
+    }
+
+    .bill-container p {
+        padding: 5%;
+        padding-bottom: 0px;
+        padding-top: 0px;
+        margin: 0px;
+    }
+
+    .bill-container a p:last-child {
+        padding-bottom: 5%;
+    }
+
+hr {
+    border-width: 2px;
 }

@@ -21,24 +21,28 @@
                 @foreach (Bill Bill in Model)
                 {
                     <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
+                        <div class="thumbnail bill-container">
                             <a asp-action="Details" asp-route-id="@Bill.Id">
-                                <h5>Klant: @Bill.Client</h5>
-                                <h5>Info:</h5>
+                                <h3><b>Klant: </b>@Bill.Client</h3>
+                                <hr />
+                                <h4><b>Info: </b></h4>
                                 <p>@Bill.Info</p>
 
                                 @if (Bill.BillEmployees.Select(e => e.Employee).Count() == 1)
                                 {
-                                    <h5>Medewerker:</h5>
+                                    <div style="display: inline"> @*Display employee name next to title*@
+                                        <h4 style="padding: 2%" ; padding-bottom: 0px; margin-bottom: 0px;"><b>Medewerker:</b></h4>
+                                        <p>@Bill.BillEmployees.Select(e => e.Employee).FirstOrDefault().Name</p>
+                                    </div>
                                 }
                                 else
                                 {
-                                    <h5>Medewerkers:</h5>
-                                }
+                                    <h4 style="padding: 2%; padding-bottom: 0px; margin-bottom: 0px;"><b>Medewerkers:</b></h4>
 
-                                @foreach (Employee Employee in Bill.BillEmployees.Select(e => e.Employee))
-                                {
-                                    <h6>@Employee.Name</h6>
+                                    @foreach (Employee Employee in Bill.BillEmployees.Select(e => e.Employee))
+                                    {
+                                        <p>- @Employee.Name</p>
+                                    }
                                 }
                             </a>
                         </div>
