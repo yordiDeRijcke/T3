@@ -10,9 +10,7 @@
     <div class="row">
         <div class="col-md-3">
             <p class="lead">Select Employee</p>
-            <div class="list-group employees">
-                <a href="#" class="list-group-item">EmployeeX</a>
-                <!-- To do: JQuery GET request for Employees and fill based on list -->
+            <div class="list-group" id="employeeList"> <!-- JS fills this list of employees -->
             </div>
         </div>
 
@@ -55,6 +53,7 @@
 
 @section Scripts {
     <script>
-            let allBills = @(Json.Serialize(Model));
+        let bills = @(Json.Serialize(Model));
     </script>
+    <script src="~/js/bill.index.js"></script>
 }
