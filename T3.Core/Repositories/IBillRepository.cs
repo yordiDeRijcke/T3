@@ -9,6 +9,7 @@ namespace T3.Core.Repositories
         #region Methods
         Bill GetBy(int id);
         List<Bill> GetAll();
+        List<Bill> GetAllWithEmployees();
         List<Bill> GetAllWithEI();
         void Add(Bill bill);
         void Remove(Bill bill);

@@ -31,6 +31,14 @@ namespace T3.Data.Repositories
             return _dbContext.Bills.ToList();
         }
 
+        public List<Bill> GetAllWithEmployees()
+        {
+            return _dbContext.Bills
+                .Include(bill => bill.BillEmployees)
+                .ThenInclude(BillEmployees => BillEmployees.Employee)
+                .ToList();
+        }
+
         public List<Bill> GetAllWithEI()
         {
             return _dbContext.Bills

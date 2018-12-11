@@ -22,7 +22,7 @@ namespace T3.Web.Controllers
         #region Methods
         public IActionResult Index()
         {
-            return View(_billRepository.GetAllWithEI());
+            return View(_billRepository.GetAllWithEmployees());
         }
         #endregion
     }
