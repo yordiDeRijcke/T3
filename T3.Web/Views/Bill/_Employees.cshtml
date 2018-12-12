@@ -1,0 +1,10 @@
+﻿@using T3.Core.Domain
+@model IList<Employee>
+
+<p class="lead">Select Employee</p>
+<div class="list-group" id="employeeList">
+    @foreach (Employee Employee in Model)
+    {
+        <a class="list-group-item">@Employee.Name</a>
+    }
+</div>
