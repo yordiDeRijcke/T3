@@ -31,6 +31,11 @@ namespace T3.Data.Repositories
             return _dbContext.Employees.ToList();
         }
 
+        public List<Employee> GetAllSorted()
+        {
+            return _dbContext.Employees.OrderBy(employee => employee.Name).ToList();
+        }
+
         public Employee GetBy(int id)
         {
             return _dbContext.Employees.Find(id);

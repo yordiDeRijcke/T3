@@ -28,7 +28,7 @@ namespace T3.Web.Controllers
             BillIndexViewModel bivm = new BillIndexViewModel
             {
                 Bills = _billRepository.GetAllWithEmployees(),
-                Employees = _employeeRepository.GetAll()
+                Employees = _employeeRepository.GetAllSorted()
             };
 
             return View(bivm);

@@ -9,6 +9,7 @@ namespace T3.Core.Repositories
         #region Methods
         Employee GetBy(int id);
         List<Employee> GetAll();
+        List<Employee> GetAllSorted();
         void Add(Employee employee);
         void Remove(Employee employee);
         void SaveChanges();
