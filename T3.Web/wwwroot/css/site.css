@@ -40,33 +40,43 @@ a {
 
 a:hover {
     text-decoration: none;
-    color: black;
+    color: black
 }
 
 .bill-container {
-    border-width: 2px !important;
+    border-width: 2px !important
 }
     .bill-container h3 {
-        text-align: center;
+        text-align: center
     }
 
     .bill-container h4 {
         padding: 2%;
         padding-bottom: 0px;
-        margin-bottom: 0px;
+        margin-bottom: 0px
     }
 
     .bill-container p {
         padding: 5%;
         padding-bottom: 0px;
         padding-top: 0px;
-        margin: 0px;
+        margin: 0px
     }
 
     .bill-container a p:last-child {
-        padding-bottom: 5%;
+        padding-bottom: 5%
     }
 
 hr {
-    border-width: 2px;
+    border-width: 2px
+}
+
+.employeeTitle_InsideBill {
+    padding: 2%;
+    padding-bottom: 0px;
+    margin-bottom: 0px
+}
+
+.employeeList_InsideBill {
+    white-space: pre-wrap
 }

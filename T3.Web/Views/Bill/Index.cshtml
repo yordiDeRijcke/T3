@@ -9,55 +9,14 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <p class="lead">Select Employee</p>
-            <div class="list-group" id="employeeList">
-                @foreach (Employee Employee in Model.Employees)
-                {
-                    <a class="list-group-item">@Employee.Name</a>
-                }
-            </div>
+            @await Html.PartialAsync("_Employees", Model.Employees)
         </div>
 
         <div class="col-md-9">
-            <div class="row">
-                @foreach (Bill Bill in Model.Bills)
-                {
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail bill-container">
-                            <a asp-action="Details" asp-route-id="@Bill.Id">
-                                <h3><b>Klant: </b>@Bill.Client</h3>
-                                <hr />
-                                <h4><b>Info: </b></h4>
-                                <p>@Bill.Info</p>
-
-                                @if (Bill.BillEmployees.Select(e => e.Employee).Count() == 1)
-                                {
-                                    <div style="display: inline">
-                                        @*Display employee name next to title*@
-                                        <h4 style="padding: 2%" ; padding-bottom: 0px; margin-bottom: 0px;"><b>Medewerker:</b></h4>
-                                        <p>@Bill.BillEmployees.Select(e => e.Employee).FirstOrDefault().Name</p>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <h4 style="padding: 2%; padding-bottom: 0px; margin-bottom: 0px;"><b>Medewerkers:</b></h4>
-                                    @foreach (Employee Employee in Bill.BillEmployees.Select(e => e.Employee))
-                                    {
-                                        <p>- @Employee.Name</p>
-                                    }
-                                }
-                            </a>
-                        </div>
-                    </div>
-                }
-            </div>
+            @await Html.PartialAsync("_Bills", Model.Bills)
         </div>
     </div>
 </div>
 @section Scripts {
-    <script>
-        let bills = @(Json.Serialize(Model.Bills));
-        let employees = @(Json.Serialize(Model.Employees));
-    </script>
     <script src="~/js/bill.index.js"></script>
 }

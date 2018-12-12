@@ -1,0 +1,39 @@
+﻿@using T3.Core.Domain
+@model IList<Bill>
+
+<div class="row">
+    @foreach (Bill Bill in Model)
+    {
+        <div class="col-sm-4 col-lg-4 col-md-4">
+            <div class="thumbnail bill-container">
+                <a asp-action="Details" asp-route-id="@Bill.Id">
+                    <h3><strong>Klant: </strong>@Bill.Client</h3>
+                    <hr />
+                    <h4><strong>Info: </strong></h4>
+                    <p>@Bill.Info</p>
+
+                    @if (Bill.BillEmployees.Count() == 1)
+                    {
+                        <div style="display: inline">
+                            @*Display employee name next to title*@
+                            <h4 class="employeeTitle_InsideBill"><strong>Medewerker:</strong></h4>
+                            <p>@Bill.BillEmployees.Select(e => e.Employee).FirstOrDefault().Name</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <h4 class="employeeTitle_InsideBill"><strong>Medewerkers:</strong></h4>
+                        string allEmployees = "";
+
+                        foreach (Employee Employee in Bill.BillEmployees.Select(e => e.Employee))
+                        {
+                            allEmployees += "- " + Employee.Name + "\n";
+                        }
+
+                        <p class="employeeList_InsideBill">@allEmployees</p>
+                    }
+                </a>
+            </div>
+        </div>
+    }
+</div>
