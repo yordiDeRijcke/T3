@@ -43,9 +43,6 @@ a:hover {
     color: black
 }
 
-.bill-container {
-    border-width: 2px !important
-}
     .bill-container h3 {
         text-align: center
     }
@@ -67,16 +64,10 @@ a:hover {
         padding-bottom: 5%
     }
 
-hr {
-    border-width: 2px
-}
-
-.employeeTitle_InsideBill {
-    padding: 2%;
-    padding-bottom: 0px;
-    margin-bottom: 0px
-}
-
-.employeeList_InsideBill {
+p {
     white-space: pre-wrap
+}
+
+body {
+    background-color: #f9fbfc
 }

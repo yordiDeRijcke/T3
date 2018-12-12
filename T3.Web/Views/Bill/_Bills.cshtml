@@ -16,13 +16,13 @@
                     {
                         <div style="display: inline">
                             @*Display employee name next to title*@
-                            <h4 class="employeeTitle_InsideBill"><strong>Medewerker:</strong></h4>
+                            <h4><strong>Medewerker:</strong></h4>
                             <p>@Bill.BillEmployees.Select(e => e.Employee).FirstOrDefault().Name</p>
                         </div>
                     }
                     else
                     {
-                        <h4 class="employeeTitle_InsideBill"><strong>Medewerkers:</strong></h4>
+                        <h4><strong>Medewerkers:</strong></h4>
                         string allEmployees = "";
 
                         foreach (Employee Employee in Bill.BillEmployees.Select(e => e.Employee))
@@ -30,7 +30,7 @@
                             allEmployees += "- " + Employee.Name + "\n";
                         }
 
-                        <p class="employeeList_InsideBill">@allEmployees</p>
+                        <p>@allEmployees</p>
                     }
                 </a>
             </div>
