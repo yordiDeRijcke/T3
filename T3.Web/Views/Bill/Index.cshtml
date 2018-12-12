@@ -1,6 +1,6 @@
-﻿
-@using T3.Core.Domain
-@model IEnumerable<Bill>
+﻿@using T3.Core.Domain
+@using T3.Web.Models
+@model BillIndexViewModel
 @{
     ViewData["Title"] = "Rekeningen";
 }
@@ -10,13 +10,17 @@
     <div class="row">
         <div class="col-md-3">
             <p class="lead">Select Employee</p>
-            <div class="list-group" id="employeeList"> <!-- JS fills this list of employees -->
+            <div class="list-group" id="employeeList">
+                @foreach (Employee Employee in Model.Employees)
+                {
+                    <a class="list-group-item">@Employee.Name</a>
+                }
             </div>
         </div>
 
         <div class="col-md-9">
             <div class="row">
-                @foreach (Bill Bill in Model)
+                @foreach (Bill Bill in Model.Bills)
                 {
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail bill-container">
@@ -28,7 +32,8 @@
 
                                 @if (Bill.BillEmployees.Select(e => e.Employee).Count() == 1)
                                 {
-                                    <div style="display: inline"> @*Display employee name next to title*@
+                                    <div style="display: inline">
+                                        @*Display employee name next to title*@
                                         <h4 style="padding: 2%" ; padding-bottom: 0px; margin-bottom: 0px;"><b>Medewerker:</b></h4>
                                         <p>@Bill.BillEmployees.Select(e => e.Employee).FirstOrDefault().Name</p>
                                     </div>
@@ -36,7 +41,6 @@
                                 else
                                 {
                                     <h4 style="padding: 2%; padding-bottom: 0px; margin-bottom: 0px;"><b>Medewerkers:</b></h4>
-
                                     @foreach (Employee Employee in Bill.BillEmployees.Select(e => e.Employee))
                                     {
                                         <p>- @Employee.Name</p>
@@ -50,10 +54,10 @@
         </div>
     </div>
 </div>
-
 @section Scripts {
     <script>
-        let bills = @(Json.Serialize(Model));
+        let bills = @(Json.Serialize(Model.Bills));
+        let employees = @(Json.Serialize(Model.Employees));
     </script>
     <script src="~/js/bill.index.js"></script>
 }
