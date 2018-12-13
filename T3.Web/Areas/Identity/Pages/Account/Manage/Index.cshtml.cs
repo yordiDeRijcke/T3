@@ -35,6 +35,7 @@ namespace T3.Web.Areas.Identity.Pages.Account.Manage
         public class InputModel
         {
             [Required(ErrorMessage = "De gebruikersnaam moet ingevuld zijn.")]
+            [Display(Name = "Gebruikersnaam")]
             public string UserName { get; set; }
         }
 

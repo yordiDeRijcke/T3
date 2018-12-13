@@ -35,10 +35,12 @@ namespace T3.Web.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required(ErrorMessage = "De gebruikersnaam moet ingevuld zijn.")]
+            [Display(Name = "Gebruikersnaam")]
             public string UserName { get; set; }
 
             [Required(ErrorMessage = "Het wachtwoord moet ingevuld zijn.")]
             [DataType(DataType.Password)]
+            [Display(Name = "Wachtwoord")]
             public string Password { get; set; }
 
             [Display(Name = "Gegevens onthouden?")]
