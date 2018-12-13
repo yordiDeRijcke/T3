@@ -29,7 +29,7 @@
                 <a asp-area="" asp-controller="Bill" asp-action="Index" class="navbar-brand">T3 CVBA</a>
             </div>
             <div class="navbar-collapse collapse">
-                @if (Context.User.Identity.IsAuthenticated)
+                @if (Context.User.Identity.IsAuthenticated && TempData["IsLoggingOut"] == null)
                 {
                     <ul class="nav navbar-nav">
                         <li><a asp-area="" asp-controller="Bill" asp-action="Create">Rekening Toevoegen</a></li>
