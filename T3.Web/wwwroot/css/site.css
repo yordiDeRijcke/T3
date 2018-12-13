@@ -71,3 +71,24 @@ p {
 body {
     background-color: #f9fbfc
 }
+
+.primaryColor {
+    color: #009093 !important
+}
+
+.bgPrimaryColor {
+    background-color: #009093 !important
+}
+
+.active > a { /* Needed to style the nav-pills active item in Account/Manage/Index*/
+    background-color: #009093 !important
+}
+
+.btnBgPrimaryColor, .btnBgPrimaryColor:hover {
+    background-color: #009093 !important;
+    color: white !important
+}
+
+.btn-link {
+    text-decoration: none !important
+}
