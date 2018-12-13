@@ -15,8 +15,12 @@
                     <a asp-action="Details" asp-route-id="@Model.ElementAt(index).Id">
                         <h3><strong>Klant: </strong>@Model.ElementAt(index).Client</h3>
                         <hr />
-                        <h4><strong>Info: </strong></h4>
-                        <p>@Model.ElementAt(index).Info</p>
+
+                        @if (Model.ElementAt(index).Info != null && Model.ElementAt(index).Info.Length > 0)
+                        {
+                            <h4><strong>Info: </strong></h4>
+                            <p>@Model.ElementAt(index).Info</p>
+                        }
 
                         @if (Model.ElementAt(index).BillEmployees.Count() == 1)
                         {
