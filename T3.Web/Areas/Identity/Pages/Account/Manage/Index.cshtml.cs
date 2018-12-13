@@ -15,21 +15,16 @@ namespace T3.Web.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly IEmailSender _emailSender;
 
         public IndexModel(
             UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
-            IEmailSender emailSender)
+            SignInManager<IdentityUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _emailSender = emailSender;
         }
 
-        public string Username { get; set; }
-
-        public bool IsEmailConfirmed { get; set; }
+        public string UserName { get; set; }
 
         [TempData]
         public string StatusMessage { get; set; }
@@ -39,9 +34,8 @@ namespace T3.Web.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Required(ErrorMessage = "Het email-adres moet ingevuld zijn.")]
-            [EmailAddress(ErrorMessage = "Gelieve een correct email-adres in te vullen.")]
-            public string Email { get; set; }
+            [Required(ErrorMessage = "De gebruikersnaam moet ingevuld zijn.")]
+            public string UserName { get; set; }
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -53,13 +47,12 @@ namespace T3.Web.Areas.Identity.Pages.Account.Manage
             }
 
             var userName = await _userManager.GetUserNameAsync(user);
-            var email = await _userManager.GetEmailAsync(user);
 
-            Username = userName;
+            UserName = userName;
 
             Input = new InputModel
             {
-                Email = email
+                UserName = userName
             };
 
             return Page();
@@ -78,14 +71,14 @@ namespace T3.Web.Areas.Identity.Pages.Account.Manage
                 return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
             }
 
-            var email = await _userManager.GetEmailAsync(user);
-            if (Input.Email != email)
+            var userName = await _userManager.GetUserNameAsync(user);
+            if (Input.UserName != userName)
             {
-                var setEmailResult = await _userManager.SetEmailAsync(user, Input.Email);
-                if (!setEmailResult.Succeeded)
+                var setUsernameResult = await _userManager.SetUserNameAsync(user, Input.UserName);
+                if (!setUsernameResult.Succeeded)
                 {
                     var userId = await _userManager.GetUserIdAsync(user);
-                    throw new InvalidOperationException($"Unexpected error occurred setting email for user with ID '{userId}'.");
+                    throw new InvalidOperationException($"Unexpected error occurred setting username for user with ID '{userId}'.");
                 }
             }
 

@@ -34,9 +34,8 @@ namespace T3.Web.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required(ErrorMessage = "Het email-adres moet ingevuld zijn.")]
-            [EmailAddress]
-            public string Email { get; set; }
+            [Required(ErrorMessage = "De gebruikersnaam moet ingevuld zijn.")]
+            public string UserName { get; set; }
 
             [Required(ErrorMessage = "Het wachtwoord moet ingevuld zijn.")]
             [DataType(DataType.Password)]
@@ -69,7 +68,7 @@ namespace T3.Web.Areas.Identity.Pages.Account
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
+                var result = await _signInManager.PasswordSignInAsync(Input.UserName, Input.Password, Input.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
@@ -82,7 +81,7 @@ namespace T3.Web.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "De combinatie van e-mailadres en wachtwoord is niet geldig.");
+                    ModelState.AddModelError(string.Empty, "De combinatie de gebruikersnaam en wachtwoord is niet geldig.");
                     return Page();
                 }
             }
