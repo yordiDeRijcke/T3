@@ -1,10 +1,16 @@
 ﻿@using T3.Core.Domain
 @model IList<Employee>
 
-<p class="lead">Select Employee</p>
-<div class="list-group" id="employeeList">
+<ul class="nav nav-pills nav-stacked">
+    <li class="active">
+        <a href="/Bill/Index">Alle rekeningen</a>
+    </li>
+
     @foreach (Employee Employee in Model)
     {
-        <a class="list-group-item">@Employee.Name</a>
+        <li>
+            <a href="#" onclick="showBillsWithEmployee(@Employee.Id)">@Employee.Name</a>
+        </li>
+
     }
-</div>
+</ul>
