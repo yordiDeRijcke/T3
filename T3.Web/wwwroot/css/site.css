@@ -43,6 +43,11 @@ a:hover {
     color: black
 }
 
+.bill-container {
+    height: 100%;
+    padding: 3%
+}
+
     .bill-container h3 {
         text-align: center
     }
@@ -91,4 +96,11 @@ body {
 
 .btn-link {
     text-decoration: none !important
+}
+
+.row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    flex-wrap: wrap;
 }

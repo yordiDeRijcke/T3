@@ -1,39 +1,49 @@
 ﻿@using T3.Core.Domain
+@using System.Text
 @model IList<Bill>
 
-<div class="row">
-    @foreach (Bill Bill in Model)
-    {
-        <div class="col-sm-4 col-lg-4 col-md-4">
-            <div class="thumbnail bill-container">
-                <a asp-action="Details" asp-route-id="@Bill.Id">
-                    <h3><strong>Klant: </strong>@Bill.Client</h3>
-                    <hr />
-                    <h4><strong>Info: </strong></h4>
-                    <p>@Bill.Info</p>
+@for (int index = 0; index < Model.Count;)
+{
+<div class="row row-eq-height" style="margin: auto;">
+    @{
+        int maxIndex = (index + 3) > Model.Count ? Model.Count : index + 3; // Stops ArrayIndexOutOfBoundsException when a line isn't completely filled.
 
-                    @if (Bill.BillEmployees.Count() == 1)
-                    {
-                        <div style="display: inline">
-                            @*Display employee name next to title*@
-                            <h4><strong>Medewerker:</strong></h4>
-                            <p>@Bill.BillEmployees.Select(e => e.Employee).FirstOrDefault().Name</p>
-                        </div>
-                    }
-                    else
-                    {
-                        <h4><strong>Medewerkers:</strong></h4>
-                        string allEmployees = "";
+        @while (index < maxIndex)
+        {
+            <div class="col-sm-4 col-lg-4 col-md-4" style="margin-bottom: 5%">
+                <div class="thumbnail bill-container">
+                    <a asp-action="Details" asp-route-id="@Model.ElementAt(index).Id">
+                        <h3><strong>Klant: </strong>@Model.ElementAt(index).Client</h3>
+                        <hr />
+                        <h4><strong>Info: </strong></h4>
+                        <p>@Model.ElementAt(index).Info</p>
 
-                        foreach (Employee Employee in Bill.BillEmployees.Select(e => e.Employee))
+                        @if (Model.ElementAt(index).BillEmployees.Count() == 1)
                         {
-                            allEmployees += "- " + Employee.Name + "\n";
+                            <div style="display: inline">
+                                @*Display employee name next to title*@
+                                <h4><strong>Medewerker:</strong></h4>
+                                <p>@Model.ElementAt(index).BillEmployees.Select(e => e.Employee).FirstOrDefault().Name</p>
+                            </div>
                         }
+                        else
+                        {
+                            <h4><strong>Medewerkers:</strong></h4>
+                            StringBuilder allEmployees = new StringBuilder();
 
-                        <p>@allEmployees</p>
-                    }
-                </a>
+                            foreach (Employee Employee in Model.ElementAt(index).BillEmployees.Select(e => e.Employee))
+                            {
+                                allEmployees.Append(String.Format("-  {0} \n", Employee.Name));
+                            }
+
+                            <p>@allEmployees</p>
+                        }
+                    </a>
+                </div>
             </div>
-        </div>
+
+            index++; // Index will be increased 3 times (maximum) for each row
+        }
     }
 </div>
+}
