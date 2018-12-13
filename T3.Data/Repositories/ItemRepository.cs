@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using T3.Core.Domain;
@@ -27,7 +28,7 @@ namespace T3.Data.Repositories
 
         public List<Item> GetAll()
         {
-            return _dbContext.Items.ToList();
+            return _dbContext.Items.AsNoTracking().ToList();
         }
 
         public Item GetBy(int id)

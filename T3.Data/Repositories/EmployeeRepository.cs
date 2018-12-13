@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using T3.Core.Domain;
 using T3.Core.Repositories;
 
@@ -28,12 +28,12 @@ namespace T3.Data.Repositories
 
         public List<Employee> GetAll()
         {
-            return _dbContext.Employees.ToList();
+            return _dbContext.Employees.AsNoTracking().ToList();
         }
 
         public List<Employee> GetAllSorted()
         {
-            return _dbContext.Employees.OrderBy(employee => employee.Name).ToList();
+            return _dbContext.Employees.AsNoTracking().OrderBy(employee => employee.Name).ToList();
         }
 
         public Employee GetBy(int id)

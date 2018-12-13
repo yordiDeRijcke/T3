@@ -28,7 +28,7 @@ namespace T3.Data.Repositories
 
         public List<Bill> GetAll()
         {
-            return _dbContext.Bills.ToList();
+            return _dbContext.Bills.AsNoTracking().ToList();
         }
 
         public List<Bill> GetAllWithEmployees()
@@ -36,6 +36,7 @@ namespace T3.Data.Repositories
             return _dbContext.Bills
                 .Include(bill => bill.BillEmployees)
                 .ThenInclude(BillEmployees => BillEmployees.Employee)
+                .AsNoTracking()
                 .ToList();
         }
 
@@ -45,12 +46,14 @@ namespace T3.Data.Repositories
                 .Include(bill => bill.BillEmployees)
                 .ThenInclude(billEmployees => billEmployees.Employee)
                 .Include(bill => bill.Items)
+                .AsNoTracking()
                 .ToList();
         }
 
         public Bill GetBy(int id)
         {
-            return _dbContext.Bills.Find(id);
+            return GetAllWithEI()
+                .Find(bill => bill.Id == id);
         }
 
         public void Remove(Bill bill)
