@@ -2,15 +2,40 @@
 @model IList<Employee>
 
 <ul class="nav nav-pills nav-stacked" style="margin-bottom: 5%">
-    <li class="active">
-        <a href="/Bill/Index">Alle rekeningen</a>
-    </li>
-
-    @foreach (Employee Employee in Model)
+    @if (TempData["filteredEmployeeId"] == null)
     {
-        <li>
-            <a href="#" onclick="showBillsWithEmployee(@Employee.Id)">@Employee.Name</a>
+        <li class="active">
+            <a asp-action="Index">Alle rekeningen</a>
         </li>
 
+        @foreach (Employee Employee in Model)
+        {
+            <li>
+                <a asp-action="Filter" asp-route-employeeId="@Employee.Id">@Employee.Name</a>
+            </li>
+        }
+    }
+    else
+    {
+        <li>
+            <a asp-action="Index">Alle rekeningen</a>
+        </li>
+
+        @foreach (Employee Employee in Model)
+        {
+            @if (TempData["filteredEmployeeId"].Equals(Employee.Id))
+            {
+                <li class="active">
+                    <a asp-action="Filter" asp-route-employeeId="@Employee.Id">@Employee.Name</a>
+                </li>
+
+            }
+            else
+            {
+                <li>
+                    <a asp-action="Filter" asp-route-employeeId="@Employee.Id">@Employee.Name</a>
+                </li>
+            }
+        }
     }
 </ul>

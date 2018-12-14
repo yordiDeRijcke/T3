@@ -50,6 +50,23 @@ namespace T3.Data.Repositories
                 .ToList();
         }
 
+        public List<Bill> GetAllByEmployee(int employeeId)
+        {
+            return GetAllWithEmployees()
+                .Where(b => {
+                    foreach(Employee Employee in b.BillEmployees.Select(be => be.Employee))
+                    {
+                        if (Employee.Id == employeeId)
+                        {
+                            return true;
+                        }
+                    }
+
+                    return false;
+                })
+                .ToList();
+        }
+
         public Bill GetBy(int id)
         {
             return GetAllWithEI()
