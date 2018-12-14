@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using T3.Core.Domain;
 using T3.Core.Repositories;
 using T3.Web.Models;
 
@@ -44,6 +46,27 @@ namespace T3.Web.Controllers
             TempData["filteredEmployeeId"] = employeeId;
             return View(nameof(Index), bivm);
         }
+
+        public IActionResult Create()
+        {
+            return View(new BillCreateViewModel());
+        }
+
+        [HttpPost]
+        public IActionResult Create(BillCreateViewModel vm)
+        {
+
+            Bill bill = new Bill(vm.Client, vm.Info)
+            {
+                Items = vm.Items
+            };
+
+            _billRepository.Add(bill);
+            _billRepository.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
+        }
+
         #endregion
     }
 }

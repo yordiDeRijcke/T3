@@ -16,7 +16,7 @@ namespace T3.Data.Mappers
             builder.HasKey(b => b.Id);
             builder.Property(b => b.Client)
                 .IsRequired()
-                .HasMaxLength(100);
+                .HasMaxLength(50);
             builder.Property(b => b.Info)
                 .HasMaxLength(150);
             builder.HasMany(b => b.Items)
