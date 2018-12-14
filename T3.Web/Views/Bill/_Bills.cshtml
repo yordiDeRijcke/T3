@@ -33,14 +33,12 @@
                         else
                         {
                             <h4><strong>Medewerkers:</strong></h4>
-                            StringBuilder allEmployees = new StringBuilder();
-
-                            foreach (Employee Employee in Model.ElementAt(index).BillEmployees.Select(e => e.Employee))
-                            {
-                                allEmployees.Append(String.Format("-  {0} \n", Employee.Name));
-                            }
-
-                            <p>@allEmployees</p>
+                            <ul>
+                                @foreach (Employee Employee in Model.ElementAt(index).BillEmployees.Select(e => e.Employee))
+                                {
+                                <li>@Employee.Name</li>
+                                }
+                            </ul>
                         }
                     </a>
                 </div>
