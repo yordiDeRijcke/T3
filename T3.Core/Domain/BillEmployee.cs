@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace T3.Core.Domain
+﻿namespace T3.Core.Domain
 {
     public class BillEmployee
     {

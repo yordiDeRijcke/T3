@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace T3.Core.Domain
@@ -20,7 +19,6 @@ namespace T3.Core.Domain
         }
         public string Info { get; set; }
 
-        [JsonIgnore]
         public IList<BillEmployee> BillEmployees { get; set; } = new List<BillEmployee>();
 
         public IList<Item> Items

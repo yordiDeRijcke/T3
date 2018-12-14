@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using T3.Core.Domain;
 using T3.Core.Repositories;
 using T3.Web.Models;
 
